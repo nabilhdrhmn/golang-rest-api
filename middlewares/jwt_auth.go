@@ -13,7 +13,7 @@ func JWTAuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		authHeader := c.GetHeader("Authorization")
 		if authHeader == "" {
-			c.JSON(http.StatusUnauthorized, gin.H{"message": "Authorization token required"})
+			c.JSON(http.StatusUnauthorized, gin.H{"message": "Unauthorized"})
 			c.Abort()
 			return
 		}
@@ -21,7 +21,7 @@ func JWTAuthMiddleware() gin.HandlerFunc {
 		// Extract the token from the "Bearer" header
 		tokenString := strings.TrimSpace(strings.TrimPrefix(authHeader, "Bearer"))
 		if tokenString == "" {
-			c.JSON(http.StatusUnauthorized, gin.H{"message": "Invalid token format"})
+			c.JSON(http.StatusUnauthorized, gin.H{"message": "Unauthorized"})
 			c.Abort()
 			return
 		}
@@ -29,7 +29,7 @@ func JWTAuthMiddleware() gin.HandlerFunc {
 		// Validate the JWT token
 		claims, err := utils.ValidateJWT(tokenString)
 		if err != nil {
-			c.JSON(http.StatusUnauthorized, gin.H{"message": "Invalid or expired token"})
+			c.JSON(http.StatusUnauthorized, gin.H{"message": "Unauthorized"})
 			c.Abort()
 			return
 		}
