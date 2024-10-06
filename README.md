@@ -233,13 +233,18 @@ Authorization: Bearer <JWT_TOKEN>
 1. Make sure you have [Go installed](https://golang.org/doc/install) and PostgreSQL set up.
 2. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/go-rest-api.git
+   git clone https://github.com/nabilhdrhmn/go-rest-api.git
    cd go-rest-api
    ```
 3. Update your PostgreSQL configuration in `config/config.go`.
 4. Run the application:
    ```bash
    go run main.go
+   ```
+   or
+      ```bash
+   go build -o golang-rest-api main.go
+   ./golang-rest-api
    ```
 
 ---
